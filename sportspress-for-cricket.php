@@ -5,7 +5,7 @@
  * Description: A suite of cricket features for SportsPress.
  * Author: ThemeBoy
  * Author URI: http://themeboy.com/
- * Version: 1.1.3
+ * Version: 1.1.4
  *
  * Text Domain: sportspress-for-cricket
  * Domain Path: /languages/
@@ -76,6 +76,9 @@ class SportsPress_Cricket {
 
 		// Define default sport
 		add_filter( 'sportspress_default_sport', array( $this, 'default_sport' ) );
+		
+		// Define Cricket event formats
+		add_filter( 'sportspress_formats', array( $this, 'cricket_event_formats' ) );
 	}
 
 	/**
@@ -525,6 +528,24 @@ class SportsPress_Cricket {
 	*/
 	public function default_sport() {
 		return 'cricket';
+	}
+	
+	/**
+	 * Define Cricket event formats.
+	*/
+	public function cricket_event_formats( $formats = array() ) {
+
+		$formats['event'] = array(
+				'firstclass' => __( 'First-class', 'sportspress' ),
+				'oneday' => __( 'One day', 'sportspress' ),
+				't20' => __( 'Twenty 20 (T20)', 'sportspress' ),
+				'tests' => __( 'Tests', 'sportspress' ),
+				'odi' => __( 'One Day Internationals', 'sportspress' ),
+				't20i' => __( 'Twenty 20 Internationals', 'sportspress' ),
+				//'friendly' => __( 'Friendly', 'sportspress' ),
+			);
+		
+		return $formats;
 	}
 }
 
